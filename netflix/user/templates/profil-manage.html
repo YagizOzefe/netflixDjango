@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+<style>
+    body{
+        background-color: black !important;
+    }
+</style>
+{% endblock css %}
+
+
+
+
+{% block content %}
+
+<div class="content h-100 d-flex flex-column justify-content-center align-items-center  text-white fs-5 container text-center p-3">
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Eğer bir image göndermek istiyorsak enctype kısmını yazmak zorundayız -->
+        {% csrf_token %}
+        {% for field in form %}
+       
+        
+        <div class="form-floating mb-2">
+            {{field}}
+            <label for="{{field.id_for_label}}"> {{field.label}} </label>
+        </div>
+        {% endfor %}
+       
+        <input class="btn btn-outline-light" type="submit" value="Profil Ekle">
+      
+       </form>
+   
+
+  
+  
+</div>
+
+{% endblock content %}

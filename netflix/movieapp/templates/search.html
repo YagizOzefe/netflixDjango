@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+<style>
+    body{
+        background-color: black !important;
+    }
+</style>
+{% endblock css %}
+
+
+
+
+{% block content %}
+{% include "partials/_navbar.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-white"> Aradığınız Filmler </h1>
+            <div class="cizgi"></div>
+        </div>
+        {% if filmler %}
+        {% for film in filmler %}
+
+        <div class="col-3">
+            <div class="card bg-transparent mt-3 text-white">
+                <img src="{{film.image.url}}" alt="">
+                <p class="text-center"> {{film.title}} </p>
+                <a class="card-footer text-white btn btn-danger text-center" href="{% url "detay" film.slug  %}"> İzle </a>
+            </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <h1 class="mt-5"> '{{cumle}}' ile ilgili bir sonuç bulunamadı. Lütfen başka bir şey arayınız </h1>
+        
+        <div class="col-12">
+            <h1 class="text-white"> Bunlar ilginizi çekebilir : </h1>
+            <div class="cizgi"></div>
+        </div>
+        {% for film in tumFilmer %}
+        <div class="col-3">
+            <div class="card bg-transparent mt-3 text-white">
+                <img src="{{film.image.url}}" alt="">
+                <p class="text-center"> {{film.title}} </p>
+                <a class="card-footer text-white btn btn-danger text-center" href="{% url "detay" film.slug  %}"> İzle </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+       
+
+    </div>
+</div>
+
+
+
+{% endblock content %}

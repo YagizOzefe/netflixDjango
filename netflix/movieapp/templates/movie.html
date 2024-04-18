@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+<style>
+    body{
+        background-color: black !important;
+    }
+</style>
+{% endblock css %}
+
+
+
+
+{% block content %}
+{% include "partials/_navbar.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-white"> Beğenebiliceğiniz Filmler </h1>
+            <div class="cizgi"></div>
+        </div>
+
+        {% for film in filmler %}
+
+        <div class="col-3">
+            <div class="card bg-transparent mt-3 text-white">
+                <img src="{{film.image.url}}" alt="">
+                <p class="text-center"> {{film.title}} </p>
+                <a class="card-footer text-white btn btn-danger text-center" href="{% url "detay" film.slug  %}"> İzle </a>
+            </div>
+        </div>
+
+        {% endfor %}
+        <div class="col-12 mt-2">
+            
+            <h1 class="text-white"> {{kategori.title}} Filmleri </h1>
+            <div class="cizgi"></div>
+        </div>
+        {% for k in komediFilm %}
+        <div class="col-3">
+            <div class="card bg-transparent mt-3 text-white">
+                <img src="{{k.image.url}}" alt="">
+                <p class="text-center"> {{k.title}} </p>
+                <a class="card-footer text-white btn btn-danger text-center" href="{% url 'detay' k.slug  %}"> İzle </a>
+            </div>
+        </div>
+        {% endfor %}
+        
+
+    </div>
+</div>
+
+
+
+{% endblock content %}

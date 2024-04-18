@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+<style>
+    body{
+        background-color: black !important;
+    }
+</style>
+{% endblock css %}
+
+
+
+
+{% block content %}
+{% include "partials/_navbar.html" %}
+
+<div class="container">
+    
+        <div class="col-12">
+
+                <div class="card bg-transparent">
+                    <p class="card-title text-white"> {{film.title}} </p>
+                    <video controls class="card-body" src="{{film.video.url}}"></video>
+                    
+                </div>
+
+
+           
+
+
+
+
+
+
+        </div>
+
+     
+
+   
+    
+        
+
+    </div>
+
+
+
+
+{% endblock content %}

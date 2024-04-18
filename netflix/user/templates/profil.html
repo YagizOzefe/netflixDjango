@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+<style>
+    body{
+        background-color: black !important;
+    }
+</style>
+{% endblock css %}
+
+
+
+
+{% block content %}
+
+<div class="content h-100 d-flex flex-column justify-content-center align-items-center  text-white fs-5 container text-center p-3">
+    <div class="d-flex gap-3 mt-4">
+        {% for i in request.user.profil_set.all  %} 
+        <!-- Eğer bir ilişki kurup ilişkinden yapıyı çekiyorsak, _set.all methoduyla doğrudan döngüye sokabiliyoruz. -->
+        <div class="card bg-transparent border border-0">
+            <a class="text-decoration-none text-white" href="{% url "movie" i.id %}">
+                <img src=" {{i.image.url}} " width="150" height="150" alt="">
+                <p> {{i.title}} </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" value="{{i.id}}" name="sil" hidden>
+                    <input type="submit" value="Sil" class="btn btn-danger">
+                </form>
+                
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    
+   
+    <a class="btn btn-outline-light mt-2" href="{% url "profil-ekle" %}">Profil Ekle</a>
+    
+</div>
+
+{% endblock content %}
